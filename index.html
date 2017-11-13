@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="assets/foundation/css/app.css">
+    <link rel="stylesheet" href="assets/foundation/css/foundation.css">
+</head>
+
+<body>
+    <div class='grid-x grid-padding-x'>
+        <div class='large-5 middle-5 cell'>
+            <h4>Functions</h4>
+            <form>
+                <label>Input Label
+                        <input type="text" id="varA" placeholder="value 1">
+                    </label>
+                <label>Input Label
+                        <input type="text" id='varB' placeholder="value 2">
+                    </label>
+
+                <div class="form-group">
+                    <button id="add" class=" button ">Success</button>
+                </div>
+            </form>
+        </div>
+        <div class='large-6 middle-6 cell'>
+            <h4>closures</h4>
+            <form>
+                <label>What to Say 
+                        <input type="text" id="varC" placeholder="eg Hi">
+                    </label>
+                <label>Input Name
+                        <input type="text" id='varD' placeholder="Name of the person">
+                    </label>
+
+                <div class="form-group">
+                    <button id="closer" class=" button ">Success</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class='grid-x grid-padding-x'>
+        <div class='large-5 middle-5 cell'>
+            <h4>prototypes before function</h4>
+            <form>
+                <label>Vehicle Site
+                        <input type="text" id="varE" placeholder="sit number">
+                    </label>
+                <label>vehicle name
+                        <input type="text" id='varF' placeholder="vehicle name">
+                    </label>
+
+                <div class="form-group">
+                    <button id="before" class=" button ">Success</button>
+                </div>
+            </form>
+        </div>
+        <div class='large-6 middle-6 cell'>
+            <h4>prototypes after function</h4>
+            <form>
+                <label>What to Say 
+                        <input type="text" id="varG" placeholder="sit number">
+                    </label>
+                <label>Input Name
+                        <input type="text" id='varH' placeholder="vehicle name">
+                    </label>
+
+                <div class="form-group">
+                    <button id="after" class=" button ">Success</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    var a = document.getElementById('varA'),
+        b = document.getElementById('varB');
+
+    document.getElementById('add').addEventListener('click', function() {
+        addNumbers(a.value, b.value);
+    });
+
+    function addNumbers(n1, n2) {
+        alert(+n1 + +n2);
+    }
+
+    var c = document.getElementById('varC'),
+        d = document.getElementById('varD');
+
+    document.getElementById('closer').addEventListener('click', function() {
+        greet(c.value)(d.value);
+    });
+
+    function greet(whattosay) {
+        return function(name) {
+            alert(whattosay + ' ' + name);
+        }
+    }
+
+
+    //using prototypes and function constructors
+    function car(sits, name) {
+        this.sits = sits;
+        this.name = name;
+        console.log('The car function is invoked');
+
+    }
+
+    var e = document.getElementById('varE'),
+        f = document.getElementById('varF');
+
+    document.getElementById('before').addEventListener('click', function() {
+        var vokswagen = new car(e.value, f.value);
+        alert(vokswagen.sits + ' ' + vokswagen.name + '<br>' + ' Printed without a function');
+    });
+
+
+    //using prototypes to add another getcarname property
+    car.prototype.getCarname = function() {
+        return this.sits + ' ' + this.name;
+    }
+    var g = document.getElementById('varG'),
+        h = document.getElementById('varH');
+    document.getElementById('after').addEventListener('click', function() {
+        var vokswagen = new car(g.value, h.value);
+        alert(vokswagen.getCarname() + ' Printed with a function');
+    });
+
+    //one way of creating an object
+
+    var cloths = new Object();
+
+    cloths['name'] = 'Shirt';
+    cloths['size'] = '5';
+
+    //console.log(cloths.name);
+    //console.log(cloths.size);
+</script>
+
+</html>
